@@ -1,0 +1,6 @@
+trait,deepseek/deepseek-v4-pro,google/gemini-3.1-flash-lite,meta-llama/llama-4-maverick,openai/gpt-4o-mini,qwen/qwen3.7-plus
+Agreeableness,0.488,-2.258,0.406,-0.089,0.329
+Conscientiousness,-0.1,-2.425,-0.175,0.099,-0.383
+Extraversion,0.558,0.618,0.539,0.352,-0.02
+Neuroticism,0.166,1.147,-0.623,0.022,0.075
+Openness,0.077,-0.051,-0.957,0.41,-0.179
