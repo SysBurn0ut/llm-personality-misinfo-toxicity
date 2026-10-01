@@ -1,0 +1,10 @@
+openai==x.y.z
+pandas==x.y.z
+numpy==x.y.z
+scipy==x.y.z
+statsmodels==x.y.z
+matplotlib==x.y.z
+Mesa==x.y.z
+detoxify==x.y.z
+transformers==x.y.z
+torch==x.y.z
