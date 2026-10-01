@@ -120,10 +120,10 @@ def build_probe_persona(target_trait, level):
 
 
 def run_check(args):
-    # NOTE on reproducibility: the seed governs only the A/B order with
-    # --counterbalance. Model responses are NOT deterministic (no temperature/seed
-    # control on the router side), so two runs won't coincide. The seed makes the
-    # design replicable, not the output.
+   # NOTE on reproducibility: the seed governs only the A/B order with
+   # --counterbalance. Calls use temperature 0 (default in utils), but model
+   # responses are not guaranteed to be deterministic, so two runs may not
+   # coincide. The seed makes the design replicable, not the output.
     rng = random.Random(args.seed)
     rows = []
     for trait in TRAITS:
