@@ -1,0 +1,8 @@
+Interazione modello x headline (Wald congiunto in forma F, SE cluster per persona)
+Seed            Dati     F  gdl num  gdl den     p Delta R2
+  12     ricalibrati 284.7       16       99 <.001    0.199
+  12 non ricalibrati 410.6       16       99 <.001    0.173
+  42     ricalibrati 262.4       16       99 <.001    0.223
+  42 non ricalibrati 371.1       16       99 <.001    0.181
+  73     ricalibrati 519.6       16       99 <.001    0.205
+  73 non ricalibrati 569.3       16       99 <.001    0.174

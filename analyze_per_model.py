@@ -60,6 +60,99 @@ def per_model_regressions(agents, dv):
     return pd.DataFrame(summary)
 
 
+def holm_correction(tbl, name, dv, alpha=0.05):
+    """
+    Holm correction over the family of per-model trait tests of THIS run
+    (one variant x one seed = 5 models x 5 traits = 25 tests).
+    Does not modify tbl or any existing output: writes a separate CSV.
+    """
+    from statsmodels.stats.multitest import multipletests
+
+    h = tbl.copy()
+    k = len(h)
+    if k != len(TRAITS) * 5:
+        print(f"\n[WARNING] Holm family has {k} tests (expected {len(TRAITS) * 5}): "
+              "some model was skipped, declare the family size.")
+    h["p_holm"] = multipletests(h["p"], alpha=alpha, method="holm")[1]
+    h["sig_raw"] = h["p"] < alpha
+    h["sig_holm"] = h["p_holm"] < alpha
+    h["family_size"] = k
+
+    print("\n" + "=" * 78)
+    print(f" HOLM CORRECTION  -  family = {k} tests (model x trait), alpha = {alpha}")
+    print("=" * 78)
+    print(f"{'model':<28}{'trait':<20}{'coef':>9}{'p':>9}{'p_holm':>9}   holm")
+    for _, r in h.iterrows():
+        mark = "retained" if r["sig_holm"] else ("lost" if r["sig_raw"] else "")
+        print(f"{str(r['model']):<28}{r['trait']:<20}{r['coef']:>9.3f}"
+              f"{r['p']:>9.3f}{r['p_holm']:>9.3f}   {mark}")
+    print(f"\nSignificant before Holm: {int(h['sig_raw'].sum())}/{k}")
+    print(f"Significant after  Holm: {int(h['sig_holm'].sum())}/{k}")
+
+    out = f"output/{name}-per_model_{dv}_holm.csv"
+    h.to_csv(out, index=False)
+    print(f"[SUCCESS] Holm table saved to {out}")
+    plot_holm_table(h, name, dv, alpha, out.replace(".csv", ".png"))
+    return h
+
+
+def plot_holm_table(h, name, dv, alpha, path):
+    """Image of the Holm table: retained (green) / lost (red)."""
+    import matplotlib.pyplot as plt
+
+    fp = lambda p: "<0.001" if p < 0.001 else f"{p:.3f}"
+    cols = ["Model", "Trait", "coef", "p", "p (Holm)", "After Holm"]
+    cell, status, prev = [], [], None
+    for _, r in h.iterrows():
+        m = str(r["model"]).split("/")[-1]
+        st = "retained" if r["sig_holm"] else ("lost" if r["sig_raw"] else "")
+        cell.append([m if m != prev else "", r["trait"], f"{r['coef']:.3f}",
+                     fp(r["p"]), fp(r["p_holm"]), st])
+        status.append(st)
+        prev = m
+
+    n = len(cell)
+    fig, ax = plt.subplots(figsize=(9, 0.33 * n + 1.3))
+    ax.axis("off")
+    t = ax.table(cellText=cell, colLabels=cols, loc="center", cellLoc="center",
+                 colWidths=[0.29, 0.2, 0.1, 0.1, 0.11, 0.13])
+    t.auto_set_font_size(False)
+    t.set_fontsize(10)
+    t.scale(1, 1.45)
+    for j in range(len(cols)):
+        c = t[0, j]
+        c.set_facecolor("#3A3A3A")
+        c.get_text().set_color("white")
+        c.get_text().set_weight("bold")
+    group = -1
+    for i, st in enumerate(status, start=1):
+        if cell[i - 1][0]:
+            group += 1
+        bg = ("#D8EFDC" if st == "retained" else "#F6D5D1" if st == "lost"
+              else ("white" if group % 2 == 0 else "#F6F5F2"))
+        for j in range(len(cols)):
+            t[i, j].set_facecolor(bg)
+            t[i, j].set_edgecolor("#CCCCCC")
+        t[i, 0].get_text().set_weight("bold")
+        if st:
+            t[i, 5].get_text().set_weight("bold")
+            t[i, 5].get_text().set_color("#1E7B34" if st == "retained" else "#B03A2E")
+
+    k = n
+    ax.set_title(f"Per-model trait effects on {dv} — run {name}\n"
+                 f"Holm correction, family = {k} tests (models × traits), α = {alpha}",
+                 fontsize=12, pad=6)
+    fig.text(0.5, 0.06,
+             f"Significant before Holm: {int(h['sig_raw'].sum())}/{k}    •    "
+             f"Significant after Holm: {int(h['sig_holm'].sum())}/{k}\n"
+             "retained = significant before and after correction;  "
+             "lost = significant only before correction",
+             ha="center", fontsize=9.5)
+    fig.savefig(path, dpi=200, bbox_inches="tight")
+    plt.close(fig)
+    print(f"[SUCCESS] Holm table figure saved to {path}")
+
+
 def interaction_test(agents, dv, name):
     """
     Formal test: do traits interact with the model? Compares the additive-only
@@ -263,6 +356,8 @@ if __name__ == "__main__":
     print(f"Read {path}: {len(agents)} agents, {agents['model'].nunique()} models")
 
     tbl = per_model_regressions(agents, DV)
+    if not tbl.empty:
+        holm_correction(tbl, args.name, DV)
     interaction_test(agents, DV, args.name)
     if args.figs:
         plot_human_vs_llm(agents, args.name, DV)

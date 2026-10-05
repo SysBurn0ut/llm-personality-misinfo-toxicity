@@ -1,10 +1,14 @@
 detoxify==0.5.2
 matplotlib==3.10.9
 Mesa==3.5.1
+names-dataset==3.3.1
 numpy==2.4.4
 openai==2.43.0
 pandas==3.0.2
+pymannkendall==1.4.3
+requests==2.33.1
 scipy==1.17.1
 statsmodels==0.14.6
 torch==2.13.0
+tqdm==4.67.3
 transformers==5.15.0

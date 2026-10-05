@@ -1,0 +1,4 @@
+seed,N aggr.,N headline,Cluster,R2 aggr.,R2 headline,F Wald modello aggr.,F Wald modello headline,p modello aggr.,p modello headline,F Wald FE headline,p FE headline
+12,500,2500,100,0.941,0.663,1670.963,1698.372,0.0,0.0,80.153,0.0
+42,500,2499,100,0.915,0.614,1142.768,1161.469,0.0,0.0,66.69,0.0
+73,500,2500,100,0.95,0.666,1491.419,1515.884,0.0,0.0,71.047,0.0
