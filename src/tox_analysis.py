@@ -273,8 +273,8 @@ def by_model(d):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--glob", default="output/tossicita/*/tox_*-judged.csv")
-    ap.add_argument("--out", default="output/tossicita/tox_analysis")
+    ap.add_argument("--glob", default="output/toxicity/*/tox_*-judged.csv")
+    ap.add_argument("--out", default="output/toxicity/tox_analysis")
     ap.add_argument("--thr-detox", type=float, default=0.5,
                     help="toxicity threshold for Detoxify and RoBERTa (default 0.5; "
                          "0.6 = Avalle et al., robustness check)")

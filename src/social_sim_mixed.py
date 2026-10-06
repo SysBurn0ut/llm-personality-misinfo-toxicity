@@ -418,7 +418,7 @@ if __name__ == "__main__":
             df = run_chat(agents, a.rounds, a.temperature, a.window,
                           label=f"[run {k}/{n_runs}]")
             df["seed"], df["condition"] = seed, cond
-            name = f"output/tossicita/{a.out}-{seed}-{cond}"
+            name = f"output/toxicity/{a.out}-{seed}-{cond}"
             os.makedirs(os.path.dirname(name), exist_ok=True)
             df.to_csv(f"{name}.csv", index=False)
             print(f"saved {name}.csv")

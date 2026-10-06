@@ -1,0 +1,13 @@
+model,trait,100A-NR,100A-NR-NEW,100A-NR-NEW-orig,100A-NR-POLES,100A-NR-POLES-orig,100A-NR-orig
+deepseek-v4-pro,Conscientiousness,-,-,-,3-,3-,-
+gemini-3.1-flash-lite,Agreeableness,1-,-,-,-,-,1-
+gemini-3.1-flash-lite,Conscientiousness,3-,-,-,3-,3-,3-
+gemini-3.1-flash-lite,Neuroticism,3+,2+,2+,3+,3+,3+
+gemini-3.1-flash-lite,Openness,-,1-,1-,-,-,-
+gpt-4o-mini,Agreeableness,-,-,-,1+,-,1-
+gpt-4o-mini,Conscientiousness,-,-,-,2-,1+,-
+llama-4-maverick,Conscientiousness,1-,-,-,-,-,1-
+llama-4-maverick,Extraversion,-,2+,2+,1+,2+,-
+llama-4-maverick,Neuroticism,-,2+,2+,-,-,-
+llama-4-maverick,Openness,-,1+,1+,-,-,-
+qwen3.7-plus,Openness,-,1-,1-,1-,1-,-
