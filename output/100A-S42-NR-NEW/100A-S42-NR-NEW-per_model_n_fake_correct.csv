@@ -1,6 +1,0 @@
-trait,google/gemini-3.1-flash-lite,openai/gpt-4o-mini,qwen/qwen3.7-plus
-Agreeableness,0.013,-0.016,0.025
-Conscientiousness,0.007,0.044,0.009
-Extraversion,-0.019,0.026,-0.004
-Neuroticism,-0.052,-0.023,-0.051
-Openness,0.04,0.013,0.039

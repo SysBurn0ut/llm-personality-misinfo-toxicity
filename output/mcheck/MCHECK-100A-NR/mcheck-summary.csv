@@ -1,0 +1,6 @@
+trait,pct_high_pole_high,pct_high_pole_low,choice_gap_pp,p_choice,p_choice_fmt,conf_high,conf_low,verdict
+Openness,100.0,0.0,100.0,3.6997539978140243e-300,3.7e-300,86.0,89.6,RECEPITO
+Conscientiousness,100.0,0.0,100.0,3.6997539978140243e-300,3.7e-300,93.0,82.0,RECEPITO
+Extraversion,100.0,0.0,100.0,3.6997539978140243e-300,3.7e-300,93.0,92.0,RECEPITO
+Agreeableness,100.0,0.0,100.0,3.6997539978140243e-300,3.7e-300,88.8,88.3,RECEPITO
+Neuroticism,100.0,0.0,100.0,3.6997539978140243e-300,3.7e-300,93.0,92.5,RECEPITO

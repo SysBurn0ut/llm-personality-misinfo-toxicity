@@ -1,8 +1,0 @@
-Trait,eta^2,f,size,dir_observed,dir_expected,match
-Openness,0.013,0.116,small,high better,low better,no
-Conscientiousness,0.013,0.116,small,high better,low better,no
-Extraversion,0.0,0.006,negligible,low better,low better,YES
-Agreeableness,0.006,0.078,negligible,high better,low better,no
-Neuroticism,0.004,0.06,negligible,low better,low better,YES
-Education,0.018,0.135,small,-,-,-
-Age,0.001,0.037,negligible,-,-,-

@@ -1,0 +1,13 @@
+condition,model,n,words_mean,distinct_pct,sources_pct,first_pct,emotional_pct
+continuous,deepseek-v4-pro,2700,9.21,19.22,36.0,21.04,0.0
+continuous,gemini-3.1-flash-lite,2700,9.63,52.89,15.44,36.74,4.37
+continuous,gpt-4o-mini,2700,7.1,4.22,31.33,1.0,0.0
+continuous,llama-4-maverick,2700,8.28,10.52,42.15,11.81,0.19
+continuous,qwen3.7-plus,2700,8.04,28.37,12.89,9.7,2.37
+continuous,all,13500,8.45,22.99,27.56,16.06,1.39
+poles,deepseek-v4-pro,2700,9.27,10.74,39.52,13.26,0.0
+poles,gemini-3.1-flash-lite,2700,9.63,60.37,14.63,43.15,6.74
+poles,gpt-4o-mini,2700,7.11,4.26,31.11,1.11,0.0
+poles,llama-4-maverick,2700,8.34,13.89,42.52,13.96,0.3
+poles,qwen3.7-plus,2700,7.94,34.93,12.81,9.81,4.3
+poles,all,13500,8.46,24.82,28.12,16.26,2.27
